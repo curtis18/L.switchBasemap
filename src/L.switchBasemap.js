@@ -52,8 +52,10 @@ L.Control.basemapsSwitcher = L.Control.extend({
                 
                 if(!obj.layer?._map){
                     obj.layer.addTo(this._map);
+                    obj.layer.bringToBack()
                     this.activeMap = obj;
                     this._collapse();
+                    this._map.fire('basemapChange', { layer : obj.layer });
 
                     check.classList.add('activeMap');
                 }
